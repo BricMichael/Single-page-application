@@ -11,6 +11,6 @@ export interface IAuthActions {
 
 export interface IAuthState {
     loggedUser: IAuth
-    userSavedData: IAuth[]
+    usersSavedData: IAuth[]
     isloggedIn: boolean
 }

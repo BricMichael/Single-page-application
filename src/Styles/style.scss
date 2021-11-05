@@ -1,0 +1,20 @@
+
+@import './base//settings';
+@import './base/base';
+
+
+
+// imports components, 
+@import './Components/auth';
+@import './Components/tablePosts';
+@import './Components/modal';
+@import './Components/modalPost';
+
+
+//imports utils
+@import './utils/spiner';
+@import './utils/buttons';
+// se puede usar las varibles en los componentes sin tener que importar el archivo que las tiene, @import
+
+
+ 

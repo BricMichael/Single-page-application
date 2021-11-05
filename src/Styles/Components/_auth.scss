@@ -1,0 +1,14 @@
+.auth__main {
+    width: 100vw;
+    height: 100vh;
+    background-color: $primary;
+    @include dFlexCenter;
+}
+
+.auth__box-containter{
+    background-color: $white;
+    border-radius: 3px;
+    padding: 20px;
+    width: 270px;
+    box-shadow: 0px 3px #a9a9a9;
+}

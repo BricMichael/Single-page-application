@@ -1,0 +1,14 @@
+
+// colors
+$primary: #333;
+$seconday: blue;
+$white: #fff;
+$font-family: Arial, Helvetica, sans-serif;
+
+
+//helpers
+@mixin dFlexCenter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

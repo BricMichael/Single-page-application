@@ -1,0 +1,71 @@
+$font-size: 15.5px;
+
+.modalPost{
+    width: 550px;
+    background: #fff;
+    border-radius: 4px;
+    padding: 12px;
+    
+    .modalPost__title {
+        color: rgb(37, 37, 143);
+        margin-bottom: 10px;
+    }
+
+    .modalPost__form {
+
+        .modalPost__formGroup{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            margin: 15px 0;
+         
+
+            .modalPost__formGroup_label {
+                font-size: 20px;   
+            }
+
+            .modalPost__formGroup_input{
+                padding: 3px;
+                border:none;
+                border-bottom: 2px solid rgb(177, 170, 170);
+                transition: border-bottom .3s ease;
+                font-size: $font-size;
+
+                &:focus{
+                    outline: none;
+                    border-bottom: 2px solid rgb(51, 50, 50);
+                }
+            }
+            .modalPost__formGroup_textarea{
+                resize: none;
+                height: 130px;
+                padding: 2px 4px;
+                font-size: $font-size;
+                font-family: $font-family;
+                border-radius: 2px;
+                text-align: justify;
+
+                &:focus{
+                    outline: none;
+                }
+            }
+        }
+        .modalPost__buttons {
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+            padding: 4px 0;
+
+            .modalPost__buttons_btn{
+                cursor: pointer;
+                border: none;
+                padding: 7px;
+                margin-left: 10px;
+                border-radius: 4px;
+                font-size: $font-size;
+                color: #fff;
+            }
+        }
+    }
+}
+

@@ -17,12 +17,13 @@ export const registerUserAction = ( userData: IUser ) => (dispatch: Dispatch<IAu
     
 }
 
-
+type GetState = () => {login: IAuthState }
 type FuncErrors = React.Dispatch<React.SetStateAction<ILogin>>
+
 export const loginUserAction = (user: ILogin, setErrors: FuncErrors, resetForm: () => void) => {
   
-    return ( dispatch: Dispatch<IAuthActions>, getState: () => {login: IAuthState } ) => {
-        const userData = getState().login.userSavedData;
+    return ( dispatch: Dispatch<IAuthActions>, getState: GetState ) => {
+        const userData = getState().login.usersSavedData;
         const checkUser: IAuth | undefined = userData.find(userDB => userDB.password === user.password && userDB.email === user.email);
         
         const dataUser = { emailSaved: checkUser?.email || '', passwordSaved: checkUser?.password || '' };

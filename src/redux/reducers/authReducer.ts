@@ -4,38 +4,38 @@ import { types } from "../types";
 
 
 const initialState: IAuthState = {
-    loggedUser: {username:'', email: '', password: '' },
-    userSavedData: [], //simulate data saved in the BBDD.
+    loggedUser: { username: '', email: '', password: '' },
+    usersSavedData: [], //simulate data saved in the BBDD.
     isloggedIn: false
 }
 
-const authReducer = ( state = initialState, action: IAuthActions) => {
+const authReducer = (state = initialState, action: IAuthActions) => {
     const { type, payload } = action;
-    switch ( type ) {
+    switch (type) {
         case types.registerUser:
             return {
                 ...state,
                 loggedUser: payload,
-                userSavedData: [...state.userSavedData, payload],
-                isloggedIn: true          
+                usersSavedData: [...state.usersSavedData, payload],
+                isloggedIn: true
             }
         case types.loginUser:
-            return{
+            return {
                 ...state,
                 loggedUser: payload,
-                isloggedIn: true  
-            }    
+                isloggedIn: true
+            }
         case types.validToken:
-            return{
+            return {
                 ...state,
                 isloggedIn: true
-            }    
+            }
         case types.logout:
-            return{
+            return {
                 ...state,
                 loggedUser: initialState.loggedUser,
-                isloggedIn: false        
-            }    
+                isloggedIn: false
+            }
         default:
             return state;
     }

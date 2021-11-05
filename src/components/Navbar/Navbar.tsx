@@ -1,6 +1,8 @@
 import { useDispatch } from "react-redux"
 import { Link } from "react-router-dom"
+import PagePosts from "../../pages/PagePosts";
 import { logoutUserAction } from "../../redux/actions/authActions";
+
 
 
 
@@ -11,6 +13,7 @@ const Navbar = () => {
     return (
         <nav>
             <Link to='/algo'>Algo prueba Hoja1</Link>
+            <PagePosts />
 
             <button type='submit' onClick={logoutBtn}>
                 Logout
