@@ -1,9 +1,8 @@
-export const types = {
-    registerUser: '[AUTH] registerUser',
-    loginUser: '[AUTH] loginUser',
-    validToken: '[AUTH]  validToken',
-    logout: '[AUTH] logout',
-
+export enum AuthType {
+    registerUser = '[AUTH] registerUser',
+    loginUser = '[AUTH] loginUser',
+    validToken = '[AUTH]  validToken',
+    logout = '[AUTH] logout',
 }
 
 
@@ -14,5 +13,13 @@ export enum PostType {
     dataModalEdit = '[POSTS] dataModalEdit',
     closeModal = '[POSTS] closeModal',
     deletePost = '[POSTS] deletePost',
+}
 
+export enum TaskType {
+    getTasks = '[TASK] getTasks',
+    addTask = '[TASK] addTask',
+    updateTask = '[TASK] updateTask',
+    dataModalEditTask = '[TASK] dataModalEditTask',
+    closeModalTask = '[TASK] closeModalTask',
+    deleteOrCompletedTask = '[TASK] deleteOrCompletedTask',
 }

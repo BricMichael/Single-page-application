@@ -5,12 +5,13 @@ import { deletePostAction, getPostsAction, setDataModalEdit, } from "../../redux
 import Spinner from "../utils/Spinner";
 import { AiFillEdit } from 'react-icons/ai';
 import { MdDelete } from 'react-icons/md';
+import AddPost from "../Modal/AddPost";
 import EditPost from "../Modal/EditPost";
 import { alertDeleteItems } from "../../helpers/alerts";
-import AddPost from "../Modal/AddPost";
+import FilterPost from "./FilterPost";
 
 
-type ReducerPost = { posts: IPostsState }
+export type ReducerPost = { posts: IPostsState }
 
 const TablePosts = () => {
     const dispatch = useDispatch();
@@ -25,7 +26,7 @@ const TablePosts = () => {
         savedPosts.length
             ? setPosts(savedPosts)
             : dispatch(getPostsAction({ setPosts, setLoading }))
-    }, [dispatch])
+    }, [])
 
     const modalEdit = (dataPostToEdit: IPost) => {
         dispatch(setDataModalEdit(dataPostToEdit));
@@ -44,6 +45,8 @@ const TablePosts = () => {
             {opendModalEdit && <EditPost closeModal={setOpendModalEdit} statePosts={posts} setPosts={setPosts} />}
             {opendModalAdd && <AddPost closeModal={setOpendModalAdd} statePosts={posts} setPosts={setPosts} />}
             <button onClick={() => setOpendModalAdd(true)}>Add Post</button>
+
+            <FilterPost setPosts={setPosts} />
 
             <table className='posts__table'>
                 <thead className='' >

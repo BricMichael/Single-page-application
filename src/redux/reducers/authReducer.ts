@@ -1,36 +1,36 @@
 import { IAuthActions, IAuthState } from "../../interfaces/auth";
-import { types } from "../types";
+import { AuthType } from "../types";
 
 
 
 const initialState: IAuthState = {
-    loggedUser: { username: '', email: '', password: '' },
+    loggedUser: { username: '', email: '', password: '', userId: 0 },
     usersSavedData: [], //simulate data saved in the BBDD.
-    isloggedIn: false
+    isloggedIn: false  // tokenFakeAction
 }
 
 const authReducer = (state = initialState, action: IAuthActions) => {
     const { type, payload } = action;
     switch (type) {
-        case types.registerUser:
+        case AuthType.registerUser:
             return {
                 ...state,
                 loggedUser: payload,
                 usersSavedData: [...state.usersSavedData, payload],
                 isloggedIn: true
             }
-        case types.loginUser:
+        case AuthType.loginUser:
             return {
                 ...state,
                 loggedUser: payload,
                 isloggedIn: true
             }
-        case types.validToken:
+        case AuthType.validToken:
             return {
                 ...state,
                 isloggedIn: true
             }
-        case types.logout:
+        case AuthType.logout:
             return {
                 ...state,
                 loggedUser: initialState.loggedUser,

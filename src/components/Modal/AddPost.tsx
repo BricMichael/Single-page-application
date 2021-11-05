@@ -1,10 +1,11 @@
 import { FC, FormEvent } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "../../Hooks/useForm";
 import Modal from "./Modal";
 import { v4 as uuidv4 } from 'uuid';
-import { IPost } from "../../interfaces/post";
 import { addPostAction } from "../../redux/actions/postsActions";
+import { IPost } from "../../interfaces/post";
+import { IAuthState } from "../../interfaces/auth";
 
 
 interface IPropsModal {
@@ -13,15 +14,17 @@ interface IPropsModal {
     setPosts: React.Dispatch<React.SetStateAction<IPost[]>>
 }
 
+export type ReducerAuth = { login: IAuthState }
 
 const AddPost: FC<IPropsModal> = ({ closeModal, statePosts, setPosts }) => {
     const dispacth = useDispatch();
+    const userId: string | number = useSelector((state: ReducerAuth) => state.login.loggedUser.userId);
     const { values, handleInputChange } = useForm({ title: '', body: '' });
 
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        const submitData = { userId: uuidv4().slice(30), id: uuidv4().slice(30), ...values };
+        const submitData = { userId, id: uuidv4().slice(30), ...values };
         dispacth(addPostAction(submitData, closeModal, { statePosts, setPosts }));
 
     }

@@ -17,8 +17,7 @@ const IndexRoutes = () => {
     return (
         <Router>
             <Switch>
-
-                <PrivateRoute path='/pag1' exact component={Navbar} isAuthenticated={isLoggedIn} />
+                <PrivateRoute path='/home' component={Navbar} isAuthenticated={isLoggedIn} />
                 <PublicRoute path='/auth' component={FormsAuth} isAuthenticated={isLoggedIn} />
                 <Redirect to="/auth/login" />
             </Switch>
