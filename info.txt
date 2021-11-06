@@ -1,0 +1,8 @@
+POST = 5000
+
+endPoints Json-server http://localhost:5000/posts AND  http://localhost:5000/tasks
+** the endpoint post already has the data.
+
+
+link used for photo gallery: // https://api.unsplash.com/search/photos?query=london&per_page=5&client_id=qlhv85-K-rwoerKgA3sFJJlPm2jJ8uHHNcxqaTpdXm0
+here is my key to try: qlhv85-K-rwoerKgA3sFJJlPm2jJ8uHHNcxqaTpdXm0
