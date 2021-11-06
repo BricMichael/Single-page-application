@@ -3,12 +3,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { IPost, IPostsState } from "../../interfaces/post";
 import { deletePostAction, getPostsAction, setDataModalEdit, } from "../../redux/actions/postsActions";
 import Spinner from "../utils/Spinner";
+import Pagination from "./Pagination";
 import { AiFillEdit } from 'react-icons/ai';
 import { MdDelete } from 'react-icons/md';
 import AddPost from "../Modal/AddPost";
 import EditPost from "../Modal/EditPost";
 import { alertDeleteItems } from "../../helpers/alerts";
 import FilterPost from "./FilterPost";
+
 
 
 export type ReducerPost = { posts: IPostsState }
@@ -18,6 +20,7 @@ const TablePosts = () => {
     const savedPosts = useSelector((state: ReducerPost) => state.posts.savedPosts);
     const [posts, setPosts] = useState<IPost[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
+    const [pageNumber, setPageNumber] = useState<number>(0);
     const [opendModalEdit, setOpendModalEdit] = useState<boolean>(false);
     const [opendModalAdd, setOpendModalAdd] = useState<boolean>(false);
 
@@ -38,50 +41,48 @@ const TablePosts = () => {
         resp && dispatch(deletePostAction(id, { statePosts: posts, setPosts }));
     }
 
-    if (loading) return <Spinner />
+    const postsPerPage = 10;
+    const pagesVisited = pageNumber * postsPerPage;
+    const displayPosts: IPost[] = posts.length < 15 ? posts : posts.slice(pagesVisited, pagesVisited + postsPerPage);
+    // if it is less than 15 it is because the data in the state was filtered therefore the 100 are not complete
+    const changePage = (numberPage: number) => setPageNumber(numberPage);
 
     return (
         <div>
             {opendModalEdit && <EditPost closeModal={setOpendModalEdit} statePosts={posts} setPosts={setPosts} />}
             {opendModalAdd && <AddPost closeModal={setOpendModalAdd} statePosts={posts} setPosts={setPosts} />}
-            <button onClick={() => setOpendModalAdd(true)}>Add Post</button>
 
-            <FilterPost setPosts={setPosts} />
+            {loading
+                ? <Spinner />
+                : <>
+                    <div className='topTable'>
+                        <FilterPost setPosts={setPosts} />
+                        <button onClick={() => setOpendModalAdd(true)} className='success post__btnAdd'>Add Post</button>
+                    </div>
 
-            <table className='posts__table'>
-                <thead className='' >
-                    <tr className=''>
-                        <th className="th">Title</th>
-                        <th className="th">Body</th>
-                        <th className="th">User ID</th>
-                        <th className="th">Actions</th>
+                    <div>
+                        {
+                            displayPosts.map(post => (
+                                <div key={post.id} className='post__data'>
+                                    <p><strong>UserID:</strong> {post.userId}</p>
+                                    <p><strong>Title:</strong> {post.title}</p>
+                                    <p className='post__data_body'><strong>Body:</strong> {post.body}</p>
+                                    <p className='post__data_action'><strong>Actions:</strong>
+                                        <i className="posts__contetnButtons">
+                                            <AiFillEdit onClick={() => modalEdit(post)} className='postActionsBtn' />
 
-                    </tr>
-                </thead>
-                <tbody>
-                    {
-                        posts.map(post => (
-                            <tr key={post.id}>
-                                <td className="td">{post.title}</td>
-                                <td className="td">{post.body}</td>
-                                <td className="td">{post.userId}</td>
-                                <td className="td">
-                                    <div className="posts__contetnButtons">
-                                        <AiFillEdit style={{ cursor: 'pointer', fontSize: '21px' }}
-                                            onClick={() => modalEdit(post)}
-                                        />
-                                        <MdDelete style={{ cursor: 'pointer', fontSize: '21px' }}
-                                            onClick={() => deletePost(post.id)}
-                                        />
-                                    </div>
-                                </td>
-                            </tr>
-                        ))
-                    }
-                </tbody>
-            </table>
+                                            <MdDelete onClick={() => deletePost(post.id)} className='postActionsBtn' />
+                                        </i>
+                                    </p>
+                                </div>
+                            ))
+                        }
+                    </div>
+                </>
+            }
+            {posts.length >= 20 && <Pagination totalPost={posts.length} postsPerPage={postsPerPage} changePage={changePage} />}
         </div>
     )
 }
-// border-collapse: collapse; 
+
 export default TablePosts;

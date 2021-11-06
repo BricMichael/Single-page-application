@@ -26,8 +26,8 @@ const FilterPost: FC<IProps> = ({ setPosts }) => {
 
     return (
         <div>
-            <label htmlFor="filter">Filter by user ID</label>
-            <select name="userId" id="filter" value={values.userId} onChange={handleInputChange}>
+            <label htmlFor="filter" className='filter'>Filter by user ID</label>
+            <select name="userId" id="filter" value={values.userId} className='filter_select' onChange={handleInputChange}>
                 <option value="allPost" className="filter__option">All posts</option>
                 {
                     noRepeatingUserId.map(post => (
@@ -36,7 +36,7 @@ const FilterPost: FC<IProps> = ({ setPosts }) => {
                 }
             </select>
 
-            <button type='submit' className='succes' onClick={filterPostsByUserId}>Filter</button>
+            <button type='submit' className='success filterBtn' onClick={filterPostsByUserId}>Filter</button>
         </div>
     )
 }

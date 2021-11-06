@@ -45,6 +45,10 @@ const postReducer = (state = initialState, action: IPostsActions) => {
                 ...state,
                 savedPosts: state.savedPosts.filter(post => post.id !== action.payload.id)
             }
+        case PostType.clearDataPost:
+            return {
+                ...initialState
+            }
         default:
             return state;
     }

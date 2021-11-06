@@ -56,7 +56,7 @@ const Edit: FC<IProps> = ({ nameComponent, values, handleSubmit, closeModal, han
                     </div>
 
                     <div className="modalPost__buttons">
-                        <button className="modalPost__buttons_btn succes" type='submit'>
+                        <button className="modalPost__buttons_btn success" type='submit'>
                             Save changes
                         </button>
                         <button className="modalPost__buttons_btn danger" onClick={cancelEditBtn} type='button'>

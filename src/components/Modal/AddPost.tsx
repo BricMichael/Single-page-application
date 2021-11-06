@@ -60,7 +60,7 @@ const AddPost: FC<IPropsModal> = ({ closeModal, statePosts, setPosts }) => {
                     </div>
 
                     <div className="modalPost__buttons">
-                        <button className="modalPost__buttons_btn succes" type='submit'>
+                        <button className="modalPost__buttons_btn success" type='submit'>
                             Save post
                         </button>
                         <button className="modalPost__buttons_btn danger" onClick={cancelEditBtn} type='button'>

@@ -1,4 +1,3 @@
-import React from 'react'
 import TablePosts from '../components/Post/TablePosts';
 
 const PagePosts = () => {

@@ -1,10 +1,13 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { alertDeleteItems, alertQuestion } from '../../helpers/alerts';
-import { ITask, ITaskState } from '../../interfaces/task';
-import { deleteORCompletedTaskAction, getTasksAction, setModalEditTaskt } from '../../redux/actions/tasksAction';
 import EditTask from '../Modal/EditTask';
 import TaskForm from './TaskForm'
+import { alertDeleteItems, alertQuestion } from '../../helpers/alerts';
+import { deleteORCompletedTaskAction, getTasksAction, setModalEditTaskt } from '../../redux/actions/tasksAction';
+import { AiFillEdit, AiOutlineCheck } from 'react-icons/ai';
+import { MdDelete } from 'react-icons/md';
+import { ITask, ITaskState } from '../../interfaces/task';
+import Spinner from '../utils/Spinner';
 
 
 
@@ -22,6 +25,7 @@ const ListTasks = () => {
         allTasks.length
             ? setTasks(allTasks)
             : dispatch(getTasksAction({ setTasks, setLoading }))
+
     }, [])
 
 
@@ -41,45 +45,36 @@ const ListTasks = () => {
     }
 
     return (
-        <>
+        <div className='listTask'>
             <TaskForm stateTasks={tasks} setTasks={setTasks} />
             {openModal && <EditTask closeModal={setOpenModal} setTasks={setTasks} stateTasks={tasks} />}
-            {
-                tasks.map(task => (
+
+            {loading
+                ? <Spinner />
+                : tasks.map((task, index) => (
                     <div className='contentList' key={task.id}>
-                        <div className='contentDescription'>
-                            <p className='contentDescription_task'>
-                                {task.description}
-                            </p>
+                        <div className='list__indexDescription'>
+                            <span>{index}</span>
+                            <p className='contentDescription_task'>{task.description}</p>
                         </div>
                         <div className='content_buttons'>
-
-                            <button
-                                className='content_buttons_finishTask'
-                                type='button'
-                                onClick={() => taskCompleted(task.id)}
-                            >
-                                completed
+                            <button type='button' onClick={() => taskCompleted(task.id)}>
+                                <AiOutlineCheck className='listTaskBtn' />
                             </button>
 
-                            <button
-                                className='content_buttons_editTask'
-                                type='button'
-                                onClick={() => modalEdit(task)}
-                            >
-                                edit
+                            <button type='button' onClick={() => modalEdit(task)}>
+                                <AiFillEdit className='listTaskBtn' />
                             </button>
-                            <button
-                                className='content_buttons_deleteTask'
-                                type='button'
-                                onClick={() => deleteTask(task.id)}>
-                                delete
+
+                            <button type='button' onClick={() => deleteTask(task.id)}>
+                                <MdDelete className='listTaskBtn' />
                             </button>
                         </div>
                     </div>
                 ))
             }
-        </>
+            {!tasks.length && <p className='no-data'>Create your first task</p>}
+        </div>
     )
 }
 

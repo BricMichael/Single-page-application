@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { FormEvent, useState } from 'react';
 import { addTaskAction } from '../../redux/actions/tasksAction';
 import { ITask } from '../../interfaces/task';
+import { alertQuestion } from '../../helpers/alerts';
 
 interface IProps {
     stateTasks: ITask[]
@@ -18,8 +19,12 @@ const TaskForm: React.FC<IProps> = ({ stateTasks, setTasks }) => {
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        const task = { description, id: uuidv4().slice(30) };
-        dispatch(addTaskAction(task, reset, { stateTasks, setTasks }));
+        if (description.length > 3) {
+            const task = { description, id: uuidv4().slice(30) };
+            dispatch(addTaskAction(task, reset, { stateTasks, setTasks }));
+        } else {
+            alertQuestion('Your task must be at least 3 characters');
+        }
     }
 
     return (
@@ -32,6 +37,7 @@ const TaskForm: React.FC<IProps> = ({ stateTasks, setTasks }) => {
                     className='formTask_input'
                     autoComplete='off'
                     name='description'
+                    autoFocus
                     value={description}
                     onChange={handleInputChange}
                 />

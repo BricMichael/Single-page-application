@@ -13,6 +13,7 @@ export enum PostType {
     dataModalEdit = '[POSTS] dataModalEdit',
     closeModal = '[POSTS] closeModal',
     deletePost = '[POSTS] deletePost',
+    clearDataPost = '[POSTS] clearDataPost'
 }
 
 export enum TaskType {

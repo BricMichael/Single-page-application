@@ -1,5 +1,4 @@
 
-
 @keyframes ldio-f9vymwkj0jg {
   0% { transform: translate(-50%,-50%) rotate(0deg); }
   100% { transform: translate(-50%,-50%) rotate(360deg); }
@@ -8,7 +7,7 @@
   position: absolute;
   width: 40px;
   height: 40px;
-  border: 5px solid rgb(19, 116, 116);
+  border: 5px solid $primary;
   border-top-color: transparent;
   border-radius: 50%;
 }
@@ -20,7 +19,7 @@
 .loadingio-spinner-rolling-y247pn8gfn8 {
   width: 200px;
   height: 200px;
-  display: inline-block;
+  margin: auto;
   overflow: hidden;
   background: none;
 }

@@ -17,7 +17,7 @@ export const anErrorHasOccurred = (msg: string) => {
     Swal.fire({
         text: msg,
         icon: 'warning',
-        confirmButtonColor: '#25258f',
+        confirmButtonColor: '#007dff',
         confirmButtonText: 'Ok',
         width: '450px',
     })
@@ -28,7 +28,7 @@ export const alertDeleteItems = async (msg: string): Promise<boolean> => {
         text: msg,
         icon: 'warning',
         showCancelButton: true,
-        confirmButtonColor: '#25258f',
+        confirmButtonColor: '#007dff',
         cancelButtonColor: '#2c2929',
         confirmButtonText: 'Confirm',
         cancelButtonText: 'Cancel',
@@ -45,8 +45,8 @@ export const alertQuestion = async (msg: string): Promise<boolean> => {
         icon: 'warning',
         showCancelButton: true,
         cancelButtonColor: '#2c2929',
-        confirmButtonColor: '#25258f',
-        confirmButtonText: 'Confirm',
+        confirmButtonColor: '#007dff',
+        confirmButtonText: 'Accept',
         cancelButtonText: 'Cancel',
         width: '455px',
     })

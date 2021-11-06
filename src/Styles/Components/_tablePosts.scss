@@ -1,6 +1,84 @@
-.posts__table{
-    background: grey;
-    width: 700px;
+.topTable{
+    width: 800px;
     margin: auto;
-    margin-top: 5rem;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+}
+
+.post__data {
+    width: 800px;
+    margin: 0.4em auto;
+    padding: 4px;
+    font-size: 15px;
+    background: $primary;
+    border-radius: 3px; 
+}
+
+.post__data_action{
+    display: flex;
+}
+
+.posts__contetnButtons{
+    margin-left: 1em;
+  
+    .postActionsBtn {
+        font-size: 20px;
+        cursor: pointer;
+        margin-right: 8px;
+    }
+}
+
+
+.filter {
+    font-size: 18px;
+    color: $primary;
+}
+.filter_select {
+    border: none;
+    font-size: 16px;
+    margin-left: 1em;
+    margin-right: 10px;
+    
+
+    &:focus{
+        outline: none;
+    }
+}
+
+.post__btnAdd, .filterBtn {
+    padding: 0 8px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    color: #fff;
+    background: $primary;
+    border-radius: 3px;
+}
+
+.filterBtn {
+    padding: 2px 10px;
+}
+
+.content_pagination {
+    width: 400px;
+    margin: 1em auto;
+   display: flex;
+   justify-content: center;
+}
+
+.buttons__pagination {
+    padding: 7px 10px;
+    border: 1px solid $primary;
+    background: #fff;
+    margin: .5em;
+    cursor: pointer;
+    border-radius: 2px;
+    color: $primary;
+    transition: background .3s ease;
+
+    &:hover{
+        background: #007dff;
+        color: #fff;
+    }
 }

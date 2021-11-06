@@ -103,3 +103,5 @@ export const deletePostAction = (id: string | number, { statePosts, setPosts }: 
         console.log(error);
     }
 }
+
+export const clearDataPostAction = () => ({ type: PostType.clearDataPost });

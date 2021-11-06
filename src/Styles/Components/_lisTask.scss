@@ -1,0 +1,89 @@
+@mixin  space-between {
+    display: flex;
+    justify-content: space-between;
+}
+
+.listTask{
+    margin-top: 1.5em;
+    .no-data{
+        text-align: center;
+        font-size: 22px;
+    }
+}
+
+.contentFormTask {
+    width: 480px;
+    margin: auto;
+    background: $primary;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 2em;
+
+    .formTask_Title {
+        color: #fff;
+        font-size: 22px;
+    }
+}
+
+.formTask{
+    @include space-between();
+    margin-top: 1em;
+
+    .formTask_input{
+        border: none;
+        padding: 6px 4px;
+        border-radius: 5px;
+        width: 80%;
+    }
+
+    .formTask_button{
+        border: none;
+        padding: 6px;
+        width: 55px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background .3s ease;
+
+        &:hover{
+            background: $hover;
+        }
+    }
+    .formTask_input:focus, .formTask_button:focus {
+        outline: none;
+    }
+}
+
+.contentList{
+    width: 620px;
+    margin: auto;
+    padding: 10px;
+    background: $primary;
+    border-radius: 5px;
+    @include space-between();
+    margin-bottom: 0.4em;
+}
+
+.list__indexDescription { display: flex; }
+
+.contentDescription_task{
+  color: #fff;
+  font-size: 15px;
+  margin-left: 1em;
+  text-align: justify;
+  width: 400px;
+}
+
+.content_buttons {
+    @include space-between();
+
+    button{
+        background: transparent;
+        border: none;
+        cursor: pointer;
+    }
+}
+
+.listTaskBtn{
+    margin-left: 10px;
+    font-size: 18px;
+}

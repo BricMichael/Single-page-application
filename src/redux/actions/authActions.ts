@@ -4,6 +4,7 @@ import { IAuth, IAuthActions, IAuthState } from "../../interfaces/auth";
 import { ILogin, IUser } from "../../interfaces/loginAndRegister";
 import { v4 as uuidv4 } from 'uuid';
 import { AuthType } from "../types";
+import { clearDataPostAction } from "./postsActions";
 
 
 export const registerUserAction = (userData: IUser) => (dispatch: Dispatch<IAuthActions>) => {
@@ -42,8 +43,9 @@ export const loginUserAction = (user: ILogin, setErrors: FuncErrors, resetForm: 
 export const tokenFakeAction = () => ({ type: AuthType.validToken });
 
 
-export const logoutUserAction = () => (dispatch: Dispatch<IAuthActions>) => {
+export const logoutUserAction = () => (dispatch: Dispatch<any>) => {
     localStorage.removeItem('isLoggedIn');
     dispatch({ type: AuthType.logout })
+    dispatch(clearDataPostAction());
 }
 

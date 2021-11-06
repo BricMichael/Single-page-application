@@ -35,8 +35,9 @@ interface IDeletePost {
     payload: { id: number | string }
 }
 
+type ClearData = { type: PostType.clearDataPost }
 
-export type IPostsActions = ISavedPosts | IAddPost | IUpdatePost | IDeletePost | IDataModalEdit | ICloseModal
+export type IPostsActions = ISavedPosts | IAddPost | IUpdatePost | IDeletePost | IDataModalEdit | ICloseModal | ClearData
 
 
 export interface IPostsState {
